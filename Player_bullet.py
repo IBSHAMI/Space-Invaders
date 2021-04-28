@@ -8,7 +8,7 @@ class PlayerBullet(Turtle):
     def __init__(self, x_position):
         super().__init__()
         self.shape("arrow")
-        self.color("#DCDCDC")
+        self.color("#0CB6E8")
         self.penup()
         self.setheading(90)
         self.goto(x_position, Y_INITIAL)

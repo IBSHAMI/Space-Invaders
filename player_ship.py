@@ -21,7 +21,7 @@ class PlayerShip(Turtle):
     def __init__(self):
         super().__init__()
         self.shape("arrow")
-        self.color("#DCDCDC")
+        self.color("#3865C6")
         self.penup()
         self.setheading(heading)
         self.turtlesize(4, 1, 10)
