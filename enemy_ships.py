@@ -20,7 +20,6 @@ heading = 0
 # velocity
 VELOCITY = 20
 
-
 class EnemyShips:
 
     def __init__(self):

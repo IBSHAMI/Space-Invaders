@@ -28,9 +28,9 @@ barriers = Barriers()
 enemy = EnemyShips()
 
 
-
 def shot_bullet_player():
     global player_bullets, player_ship_x_position
+    # Player can shoot a Max of 6 bullets at a time
     if len(player_bullets) < 6:
         player_bullets.append(PlayerBullet(player_ship_x_position))
     else:
@@ -54,7 +54,8 @@ game_screen.onkey(player_ship.moving_left, "Left")
 game_screen.onkey(player_ship.moving_right, "Right")
 game_screen.onkey(shot_bullet_player, "Return")
 
-# Timer for ships movement, game diffucilty and number of enemy bullets
+# Timer for ships movement, game difficulty and number of enemy bullets
+# those varaibles are created to increase the game difficulty as the game proceed
 timer = time.time()
 difference = 2
 timer_game_difficulty_increase = time.time()
@@ -62,11 +63,11 @@ difference_to_increase_difficulty = 25
 number_bullets = 2
 number_ships_left_to_increase_diff = 18
 
-
 # Enemy ships movement control variables
 index_movement = 0
 enemy_movement = [10, 10, -10, -10,
-                  -10, -10, 10, 10]
+                  -10, -10, 10, 10]  # The enemy ships can only move left (- negative values) or right (positive values)
+# by the following values
 
 # player lives
 lives = 3
@@ -86,8 +87,6 @@ while game_is_on:
         else:
             bullet.bullet_moving()
 
-
-
     # shoot enemy bullets and move the ships
     if (time.time() - timer) > difference:
         if number_bullets >= len(enemy.ships_list):
@@ -99,7 +98,6 @@ while game_is_on:
         else:
             index_movement += 1
         timer = time.time()
-
 
     # enemy bullet reach the end of the screen
     if len(enemy_bullets) != 0:
@@ -139,7 +137,7 @@ while game_is_on:
                     enemy.ships_list.remove(enemy_ship)
                     score.score_points(points_earned=5)
                 except ValueError:
-                    score.score_points(points_earned= 5)
+                    score.score_points(points_earned=5)
                     score.win_game()
 
     # Enemy hit player ship
@@ -154,7 +152,8 @@ while game_is_on:
                 score.player_lives()
 
     # Increase game difficulty
-    if (time.time() - timer_game_difficulty_increase) > difference_to_increase_difficulty or len(enemy.ships_list) < number_ships_left_to_increase_diff:
+    if (time.time() - timer_game_difficulty_increase) > difference_to_increase_difficulty or len(
+            enemy.ships_list) < number_ships_left_to_increase_diff:
         if difference >= 1:
             difference *= 0.75
         if number_bullets <= 8:
@@ -163,10 +162,9 @@ while game_is_on:
         timer_game_difficulty_increase = time.time()
         number_ships_left_to_increase_diff *= 0.5
 
-
     # game win
     if len(enemy.ships_list) == 0:
         score.win_game()
-        game_is_on= False
+        game_is_on = False
 
 game_screen.exitonclick()

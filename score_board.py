@@ -33,6 +33,7 @@ class Scoreboard(Turtle):
         self.write(f"GameOver", align="center",
                    font=("Courier", 15, "normal"))
 
+    #when player shoot all the enemy ships
     def win_game(self):
         self.clear()
         self.color("#13FF03")
