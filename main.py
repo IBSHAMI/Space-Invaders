@@ -137,6 +137,7 @@ while game_is_on:
                 enemy_ship.reset()
                 try:
                     enemy.ships_list.remove(enemy_ship)
+                    score.score_points(points_earned=5)
                 except ValueError:
                     score.score_points(points_earned= 5)
                     score.win_game()
